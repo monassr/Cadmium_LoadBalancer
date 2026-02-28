@@ -1,12 +1,10 @@
-#include <limits>
-#include "include/top.hpp"
 
 /*
-There are 3 macros defined at compile time that changes the behaviour of the simulation.
---> SIM_TIME: This macro, when defined, runs the simulation in simulation time. Else, the simulation runs at wall clock.
---> ESP_PLATFORM: When defined, the models are compiled for the ESP32 microcontroller. Else, compiles for Linux/ Windows
---> NO_LOGGING: When defined, prevents logging (maybe useful in embedded situations)
+Test main file for the TOP coupled model.
 */
+
+#include <limits>
+#include "../Top_model/top.hpp"
 
 
 #ifdef SIM_TIME
@@ -29,13 +27,12 @@ using namespace cadmium;
 
 extern "C" {
 	#ifdef ESP_PLATFORM
-		void app_main() //starting point for ESP32 code
+		void app_main()
 	#else
-		int main()		//starting point for simulation code
+		int main()
 	#endif
 	{
-	
-		auto model = std::make_shared<top_coupled> ("top");
+		auto model = std::make_shared<Top_coupled>("Top_coupled");
 		
 		#ifdef SIM_TIME
 			auto rootCoordinator = cadmium::RootCoordinator(model);
@@ -50,15 +47,18 @@ extern "C" {
 		#endif
 
 		#ifndef NO_LOGGING
-		rootCoordinator.setLogger<STDOUTLogger>(";");
+			rootCoordinator.setLogger<STDOUTLogger>(";");
+			rootCoordinator.setLogger<CSVLogger>("simulation_results/top_output.csv", ";");
 		#endif
 
 		rootCoordinator.start();
+		
 		#ifdef ESP_PLATFORM
 			rootCoordinator.simulate(std::numeric_limits<double>::infinity());
 		#else
-			rootCoordinator.simulate(23.0);
+			rootCoordinator.simulate(3600.1);
 		#endif
+		
 		rootCoordinator.stop();	
 
 		#ifndef ESP_PLATFORM

@@ -1,43 +1,141 @@
-# Blank Cadmium Project (RT)
-|  Linux | Windows| ESP32 | MSP432 |
-|:--|:--|:--|:--|
-|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:question:|
-## Introduction
-This is a blank project that you can use as a template to start off your DEVS models. This project consits of a template atomic and coupled model.
+# Load Balancer — Cadmium DEVS Simulation
 
-## Dependencies
-This project assumes that you have Cadmium installed in a location accessible by the environment variable $CADMIUM.
-_This dependency would be met by default if you are using the ARSLAB servers. To check, try `echo $CADMIUM` in the terminal_
+A load balancer system modeled using the DEVS formalism and implemented with the [Cadmium v2](https://github.com/Sasisekhar/cadmium_v2) simulation framework in C++.
 
-## Build
-To build this project, run:
-```sh
-source build_sim.sh
-```
-__NOTE__: Everytime you run build_sim.sh, the contents of `build/` and `bin/` will be replaced.
+## Project Structure
 
-To build this project for the ESP32, run:
-```sh
-source build_esp.sh
+```
+atomic_models [This folder contains the atomic DEVS models implemented in Cadmium]
+	generator.hpp
+	balancer.hpp
+	server.hpp
+	dbserver.hpp
+bin [This folder will be created automatically the first time you compile the project.
+     It will contain all the executables]
+build [This folder will be created automatically the first time you compile the project.
+       It will contain all the build files generated during compilation]
+coupled_models [This folder contains the coupled DEVS models]
+	lbs.hpp
+scripts [This folder contains shell scripts to build and run each test]
+	run_test_generator.sh
+	run_test_balancer.sh
+	run_test_server.sh
+	run_test_db_server.sh
+	run_test_lbs.sh
+	run_test_top.sh
+simulation_results [This folder will be created automatically the first time you compile the project.
+                    It will store the outputs from your simulations and tests]
+test_inputs [This folder contains all the CSV input data to run the model tests]
+	Input_In_Balancer_Testing.csv
+	Input_In_Server_Testing.csv
+	Input_Indb_Server_Testing.csv
+	Input_In_DBServer_Testing.csv
+	Input_In_LBS_Testing.csv
+tests [This folder contains the unit tests for the atomic and coupled models]
+	test_generator_main.cpp
+	test_balancer_main.cpp
+	test_server_main.cpp
+	test_dbserver_main.cpp
+	test_lbs_main.cpp
+	test_top_main.cpp
+Top_model [This folder contains the Top-level coupled model]
+	top.hpp
 ```
 
-## Execute
-To run the project, run:
-```sh
-./bin/sample_project
+## Prerequisites
+
+- [Cadmium v2](https://github.com/Sasisekhar/cadmium_v2)
+
+## Important: Absolute Paths for Test Inputs
+
+Several test files use Cadmium's `IEStream` to read input data from CSV files. `IEStream` requires absolute paths. Before building, you must update the placeholder `<ABSOLUTE_PATH>` in the following files to match your system:
+
+- `main/tests/test_balancer_main.cpp`
+- `main/tests/test_server_main.cpp`
+- `main/tests/test_dbserver_main.cpp`
+- `main/tests/test_lbs_main.cpp`
+
+For example, if your project is at `/home/user/Load_Balancer`, replace:
+```
+<ABSOLUTE_PATH>/main/test_inputs/Input_In_Balancer_Testing.csv
+```
+with:
+```
+/home/user/Load_Balancer/main/test_inputs/Input_In_Balancer_Testing.csv
 ```
 
-To flash the project onto the esp32, run:
-```sh
-idf.py -p $ESP_PORT flash
+
+## Building
+
+Each run script handles the full build-and-run cycle automatically. If you want to build manually:
+
+```bash
+mkdir -p build && cd build
+cmake .. -DSIM=ON
+make <target>
 ```
 
-## Modify
-You can modify this project per your requirement. Change the project name defined in the topmost CMakeLists.txt file here:
-```cmake
-set(projectName "sample_project")
+Available build targets:
+| Target | Description |
+|---|---|
+| `test_generator` | Generator atomic model test |
+| `test_balancer` | Balancer atomic model test |
+| `test_server` | Server atomic model test |
+| `test_dbserver` | DB Server atomic model test |
+| `test_lbs` | LBS coupled model test |
+| `test_top` | Full system (Top) test |
+
+Binaries are placed in the `bin/` directory.
+
+## Running Tests
+
+The simplest way to run any test is through the provided shell scripts in `scripts/`. to ensure scripts are executable run the below code only once before running the scripts.
+
+```bash
+chmod +x scripts/*.sh
 ```
-If you want to add other include directories, add the following to the CMakeLists.txt file in the `main` directory:
-```cmake
-target_include_directories(${projectName} PRIVATE "/path/to/dependency")
+
+### Individual Model Tests
+
+**Generator** — generates a job every second for a total of 4 seconds:
+```bash
+./scripts/run_test_generator.sh
 ```
+
+**Balancer** — dispatches jobs following round-robin scheduling:
+```bash
+./scripts/run_test_balancer.sh
+```
+
+**Server** — processes 3 jobs:
+```bash
+./scripts/run_test_server.sh
+```
+
+**DB Server** — receives jobs, processes them, sends acknowledgments back:
+```bash
+./scripts/run_test_db_server.sh
+```
+
+### Coupled Model Tests
+
+**LBS** — tests the load balance system (balancer + 3 servers + dbserver) for 1 hour:
+```bash
+./scripts/run_test_lbs.sh
+```
+
+**Top** — tests the complete system generator integrated into the LBS (generator + balancer + 3 servers + dbserver) for 1 hour:
+```bash
+./scripts/run_test_top.sh
+```
+
+## Simulation Output
+
+Each test produces two output files in `simulation_results/`:
+
+| File | Format | Description |
+|---|---|---|
+| `*_log.txt` | Tab-separated text | Human-readable log with timestamps and event descriptions |
+| `*_output.csv` | Semicolon-delimited CSV | Cadmium's built-in logger output with columns: `time;model_id;model_name;port_name;data` |
+
+Both files contain equivalent information. The `.txt` logs are easier to read.
