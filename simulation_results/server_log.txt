@@ -1,0 +1,13 @@
+0.1	Server 1 receives job# 1 at server_in1
+0.1	Server 1 starts processing job# 1
+0.2	Server 1 receives job# 2 at server_in1
+0.3	Server 1 receives job# 3 at server_in1
+1.95786	Server 1 sends job# 1 to database server at server_out2
+2	Server 1 receives DB acknowledgment for job# 1 at server_in_db
+2	Server 1 finishes job# 1 at server_out1
+2	Server 1 starts processing job# 2
+2.04618	Server 1 sends job# 2 to database server at server_out2
+5	Server 1 receives DB acknowledgment for job# 2 at server_in_db
+5	Server 1 finishes job# 2 at server_out1
+5	Server 1 starts processing job# 3
+5.29452	Server 1 sends job# 3 to database server at server_out2

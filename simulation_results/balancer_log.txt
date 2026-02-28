@@ -1,0 +1,10 @@
+5	Balancer receives Job# 1 at balancer_in
+6	Balancer sends job# 1 to server 2 at balancer_out2
+6	Balancer receives Job# 2 at balancer_in
+7	Balancer sends job# 2 to server 3 at balancer_out3
+7.1	Balancer receives Job# 3 at balancer_in
+7.2	Balancer receives Job# 4 at balancer_in
+7.3	Balancer receives Job# 5 at balancer_in
+8.1	Balancer sends job# 3 to server 1 at balancer_out1
+9.1	Balancer sends job# 4 to server 2 at balancer_out2
+10.1	Balancer sends job# 5 to server 3 at balancer_out3

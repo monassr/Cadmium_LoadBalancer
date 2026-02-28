@@ -1,0 +1,21 @@
+sep=;
+time;model_id;model_name;port_name;data
+0;1;db_server;;{phase: passive, queue_size: 0}
+0;2;job_stream;;2
+2;1;db_server;;{phase: active, queue_size: 1}
+2;2;job_stream;out;1
+2;2;job_stream;;0
+2;1;db_server;;{phase: active, queue_size: 2}
+2;2;job_stream;out;2
+2;2;job_stream;;0
+2;1;db_server;;{phase: active, queue_size: 3}
+2;2;job_stream;out;3
+2;2;job_stream;;inf
+2.5;1;db_server;dbserver_out1;1
+2.5;1;db_server;;{phase: active, queue_size: 2}
+3;1;db_server;dbserver_out2;2
+3;1;db_server;;{phase: active, queue_size: 1}
+3.5;1;db_server;dbserver_out3;3
+3.5;1;db_server;;{phase: passive, queue_size: 0}
+3.5;1;db_server;;{phase: passive, queue_size: 0}
+3.5;2;job_stream;;inf

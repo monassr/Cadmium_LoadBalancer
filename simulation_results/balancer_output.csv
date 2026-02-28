@@ -1,0 +1,30 @@
+sep=;
+time;model_id;model_name;port_name;data
+0;1;balancer;;{phase: passive, queue_size: 0}
+0;2;balancer_input_test;;5
+5;1;balancer;;{phase: active, queue_size: 1}
+5;2;balancer_input_test;out;1
+5;2;balancer_input_test;;1
+6;1;balancer;balancer_out2;1
+6;1;balancer;;{phase: active, queue_size: 1}
+6;2;balancer_input_test;out;2
+6;2;balancer_input_test;;1.1
+7;1;balancer;balancer_out3;2
+7;1;balancer;;{phase: passive, queue_size: 0}
+7.1;1;balancer;;{phase: active, queue_size: 1}
+7.1;2;balancer_input_test;out;3
+7.1;2;balancer_input_test;;0.1
+7.2;1;balancer;;{phase: active, queue_size: 2}
+7.2;2;balancer_input_test;out;4
+7.2;2;balancer_input_test;;0.1
+7.3;1;balancer;;{phase: active, queue_size: 3}
+7.3;2;balancer_input_test;out;5
+7.3;2;balancer_input_test;;inf
+8.1;1;balancer;balancer_out1;3
+8.1;1;balancer;;{phase: active, queue_size: 2}
+9.1;1;balancer;balancer_out2;4
+9.1;1;balancer;;{phase: active, queue_size: 1}
+10.1;1;balancer;balancer_out3;5
+10.1;1;balancer;;{phase: passive, queue_size: 0}
+10.1;1;balancer;;{phase: passive, queue_size: 0}
+10.1;2;balancer_input_test;;inf

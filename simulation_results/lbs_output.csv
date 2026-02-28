@@ -1,0 +1,67 @@
+sep=;
+time;model_id;model_name;port_name;data
+0;2;db_server;;{phase: passive, queue_size: 0, jobs_done: 0}
+0;3;server3;;{phase: passive, waiting: false, queue_size: 0, current_job: 0}
+0;4;server2;;{phase: passive, waiting: false, queue_size: 0, current_job: 0}
+0;5;server1;;{phase: passive, waiting: false, queue_size: 0, current_job: 0}
+0;6;balancer;;{phase: passive, queue_size: 0}
+0;7;In;;1
+1;6;balancer;;{phase: active, queue_size: 1}
+1;7;In;out;1
+1;7;In;;1
+2;4;server2;;{phase: active, waiting: false, queue_size: 1, current_job: 1}
+2;6;balancer;balancer_out2;1
+2;6;balancer;;{phase: active, queue_size: 1}
+2;7;In;out;2
+2;7;In;;1
+2.89079;2;db_server;;{phase: active, queue_size: 1, jobs_done: 0}
+2.89079;4;server2;server_out2;2
+2.89079;4;server2;;{phase: passive, waiting: true, queue_size: 0, current_job: 1}
+3;3;server3;;{phase: active, waiting: false, queue_size: 1, current_job: 2}
+3;6;balancer;balancer_out3;2
+3;6;balancer;;{phase: active, queue_size: 1}
+3;7;In;out;3
+3;7;In;;1
+3.0587;2;db_server;;{phase: active, queue_size: 2, jobs_done: 0}
+3.0587;3;server3;server_out2;3
+3.0587;3;server3;;{phase: passive, waiting: true, queue_size: 0, current_job: 2}
+3.89079;2;db_server;dbserver_out2;2
+3.89079;2;db_server;;{phase: active, queue_size: 1, jobs_done: 1}
+3.89079;4;server2;;{phase: active, waiting: true, queue_size: 0, current_job: 1}
+3.89079;4;server2;server_out1;1
+3.89079;4;server2;;{phase: passive, waiting: false, queue_size: 0, current_job: 1}
+4;5;server1;;{phase: active, waiting: false, queue_size: 1, current_job: 3}
+4;6;balancer;balancer_out1;3
+4;6;balancer;;{phase: active, queue_size: 1}
+4;7;In;out;4
+4;7;In;;inf
+4.0461;2;db_server;;{phase: active, queue_size: 2, jobs_done: 1}
+4.0461;5;server1;server_out2;1
+4.0461;5;server1;;{phase: passive, waiting: true, queue_size: 0, current_job: 3}
+4.89079;2;db_server;dbserver_out3;3
+4.89079;2;db_server;;{phase: active, queue_size: 1, jobs_done: 2}
+4.89079;3;server3;;{phase: active, waiting: true, queue_size: 0, current_job: 2}
+4.89079;3;server3;server_out1;2
+4.89079;3;server3;;{phase: passive, waiting: false, queue_size: 0, current_job: 2}
+5;4;server2;;{phase: active, waiting: false, queue_size: 1, current_job: 4}
+5;6;balancer;balancer_out2;4
+5;6;balancer;;{phase: passive, queue_size: 0}
+5.00878;2;db_server;;{phase: active, queue_size: 2, jobs_done: 2}
+5.00878;4;server2;server_out2;2
+5.00878;4;server2;;{phase: passive, waiting: true, queue_size: 0, current_job: 4}
+5.89079;2;db_server;dbserver_out1;1
+5.89079;2;db_server;;{phase: active, queue_size: 1, jobs_done: 3}
+5.89079;5;server1;;{phase: active, waiting: true, queue_size: 0, current_job: 3}
+5.89079;5;server1;server_out1;3
+5.89079;5;server1;;{phase: passive, waiting: false, queue_size: 0, current_job: 3}
+6.89079;2;db_server;dbserver_out2;2
+6.89079;2;db_server;;{phase: passive, queue_size: 0, jobs_done: 4}
+6.89079;4;server2;;{phase: active, waiting: true, queue_size: 0, current_job: 4}
+6.89079;4;server2;server_out1;4
+6.89079;4;server2;;{phase: passive, waiting: false, queue_size: 0, current_job: 4}
+6.89079;2;db_server;;{phase: passive, queue_size: 0, jobs_done: 4}
+6.89079;3;server3;;{phase: passive, waiting: false, queue_size: 0, current_job: 2}
+6.89079;4;server2;;{phase: passive, waiting: false, queue_size: 0, current_job: 4}
+6.89079;5;server1;;{phase: passive, waiting: false, queue_size: 0, current_job: 3}
+6.89079;6;balancer;;{phase: passive, queue_size: 0}
+6.89079;7;In;;inf

@@ -1,0 +1,9 @@
+2	DBServer receives job from server#1 at dbserver_in1
+2	DBServer receives job from server#2 at dbserver_in1
+2	DBServer receives job from server#3 at dbserver_in1
+2.5	DBServer sends job back to server#1 at dbserver_out1
+2.5	Jobs done by DB Server: 1
+3	DBServer sends job back to server#2 at dbserver_out2
+3	Jobs done by DB Server: 2
+3.5	DBServer sends job back to server#3 at dbserver_out3
+3.5	Jobs done by DB Server: 3
