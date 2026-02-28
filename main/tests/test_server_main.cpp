@@ -29,8 +29,8 @@ struct test_server_coupled : public Coupled {
     test_server_coupled(const std::string& id) : Coupled(id) {
 
         // create IEStream components to read from CSV files
-        auto job_stream = addComponent<lib::IEStream<int>>("job_stream", "/home/mnassr/Load_Balancer/main/test_inputs/Input_In_Server_Testing.csv");
-        auto db_stream = addComponent<lib::IEStream<int>>("db_stream", "/home/mnassr/Load_Balancer/main/test_inputs/Input_Indb_Server_Testing.csv");
+        auto job_stream = addComponent<lib::IEStream<int>>("job_stream", "<ABSOLUTE_PATH>/main/test_inputs/Input_In_Server_Testing.csv");
+        auto db_stream = addComponent<lib::IEStream<int>>("db_stream", "<ABSOLUTE_PATH>/main/test_inputs/Input_Indb_Server_Testing.csv");
         
 		// model name, server id, mean processing time
         auto srv = addComponent<server>("server", 1, 0.5);

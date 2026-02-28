@@ -55,13 +55,13 @@ Several test files use Cadmium's `IEStream` to read input data from CSV files. `
 - `main/tests/test_dbserver_main.cpp`
 - `main/tests/test_lbs_main.cpp`
 
-For example, if your project is at `/home/user/Load_Balancer`, replace:
+For example, if your project is at `/home/user/LoadBalancer`, replace:
 ```
 <ABSOLUTE_PATH>/main/test_inputs/Input_In_Balancer_Testing.csv
 ```
 with:
 ```
-/home/user/Load_Balancer/main/test_inputs/Input_In_Balancer_Testing.csv
+/home/user/LoadBalancer/main/test_inputs/Input_In_Balancer_Testing.csv
 ```
 
 
